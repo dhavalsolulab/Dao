@@ -6,7 +6,7 @@ import { useMoralis, useMoralisWeb3Api, useWeb3ExecuteFunction } from "react-mor
 import { ethers } from "ethers";
 
 
-const Home = async () => {
+const Home = () => {
   const [passRate, setPassRate] = useState(0);
   const [totalP, setTotalP] = useState(0);
   const [counted, setCounted] = useState(0);
@@ -15,13 +15,20 @@ const Home = async () => {
   const [proposals, setProposals] = useState();
   const Web3Api = useMoralisWeb3Api();
   const [sub, setSub] = useState();
+  const [add, setAdd] = useState(0);
   const contractProcessor = useWeb3ExecuteFunction();
 
-  const provider = new ethers.providers.JsonRpcProvider();
+  
+  async function getAddress(){
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+  
+    const acc = await provider.send("eth_requestAccounts", []);
+    console.log('%c 🍲 acc: ', 'font-size:20px;background-color: #7F2B82;color:#fff;', acc);
+  
+    const balance = await provider.getBalance(acc[0])
+    console.log('%c 🥫 balance: ', 'font-size:20px;background-color: #ED9EC7;color:#fff;', ethers.utils.formatEther(balance));
 
-  const balance = await provider.getBalance("ethers.eth")
-  console.log('%c 🍼️ balance: ', 'font-size:20px;background-color: #2EAFB0;color:#fff;', balance);
-
+  }
 
   async function createProposal(newProposal) {
     let options = {
@@ -154,6 +161,10 @@ const Home = async () => {
       
     }
   }, [isInitialized]);
+
+  useEffect(() => {
+    getAddress();
+  })
 
 
   return (
