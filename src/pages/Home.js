@@ -93,78 +93,78 @@ const Home = () => {
     }
   }
 
-  useEffect(() => {
-    if (isInitialized) {
+  // useEffect(() => {
+  //   if (isInitialized) {
 
-      async function getProposals() {
-        const Proposals = Moralis.Object.extend("Proposals");
-        const query = new Moralis.Query(Proposals);
-        query.descending("uid_decimal");
-        const results = await query.find();
-        const table = await Promise.all(
-          results.map(async (e) => [
-            e.attributes.uid,
-            e.attributes.description,
-            <Link to="/proposal" state={{
-              description: e.attributes.description,
-              color: (await getStatus(e.attributes.uid)).color,
-              text: (await getStatus(e.attributes.uid)).text,
-              id: e.attributes.uid,
-              proposer: e.attributes.proposer
+  //     async function getProposals() {
+  //       const Proposals = Moralis.Object.extend("Proposals");
+  //       const query = new Moralis.Query(Proposals);
+  //       query.descending("uid_decimal");
+  //       const results = await query.find();
+  //       const table = await Promise.all(
+  //         results.map(async (e) => [
+  //           e.attributes.uid,
+  //           e.attributes.description,
+  //           <Link to="/proposal" state={{
+  //             description: e.attributes.description,
+  //             color: (await getStatus(e.attributes.uid)).color,
+  //             text: (await getStatus(e.attributes.uid)).text,
+  //             id: e.attributes.uid,
+  //             proposer: e.attributes.proposer
               
-              }}>
-              <Tag
-                color={(await getStatus(e.attributes.uid)).color}
-                text={(await getStatus(e.attributes.uid)).text}
-              />
-            </Link>,
-          ])
-        );
-        setProposals(table);
-        setTotalP(results.length);
-      }
+  //             }}>
+  //             <Tag
+  //               color={(await getStatus(e.attributes.uid)).color}
+  //               text={(await getStatus(e.attributes.uid)).text}
+  //             />
+  //           </Link>,
+  //         ])
+  //       );
+  //       setProposals(table);
+  //       setTotalP(results.length);
+  //     }
 
 
-      async function getPassRate() {
-        const ProposalCounts = Moralis.Object.extend("ProposalCounts");
-        const query = new Moralis.Query(ProposalCounts);
-        const results = await query.find();
-        let votesUp = 0;
+  //     async function getPassRate() {
+  //       const ProposalCounts = Moralis.Object.extend("ProposalCounts");
+  //       const query = new Moralis.Query(ProposalCounts);
+  //       const results = await query.find();
+  //       let votesUp = 0;
 
-        results.forEach((e) => {
-          if (e.attributes.passed) {
-            votesUp++;
-          }
-        });
+  //       results.forEach((e) => {
+  //         if (e.attributes.passed) {
+  //           votesUp++;
+  //         }
+  //       });
 
-        setCounted(results.length);
-        setPassRate((votesUp / results.length) * 100);
-      }
-
-
-      const fetchTokenIdOwners = async () => {
-        const options = {
-          address: "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
-          token_id:
-            "34885103611559094078416375598166902696017567311370712658413208238551126245396",
-          chain: "mumbai",
-        };
-        const tokenIdOwners = await Web3Api.token.getTokenIdOwners(options);
-        const addresses = tokenIdOwners.result.map((e) => e.owner_of);
-        setVoters(addresses);
-      };
+  //       setCounted(results.length);
+  //       setPassRate((votesUp / results.length) * 100);
+  //     }
 
 
-      fetchTokenIdOwners();
-      getProposals();
-      getPassRate();
+  //     const fetchTokenIdOwners = async () => {
+  //       const options = {
+  //         address: "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
+  //         token_id:
+  //           "34885103611559094078416375598166902696017567311370712658413208238551126245396",
+  //         chain: "mumbai",
+  //       };
+  //       const tokenIdOwners = await Web3Api.token.getTokenIdOwners(options);
+  //       const addresses = tokenIdOwners.result.map((e) => e.owner_of);
+  //       setVoters(addresses);
+  //     };
+
+
+  //     fetchTokenIdOwners();
+  //     getProposals();
+  //     getPassRate();
       
-    }
-  }, [isInitialized]);
+  //   }
+  // }, [isInitialized]);
 
-  useEffect(() => {
-    getAddress();
-  })
+  // useEffect(() => {
+  //   getAddress();
+  // })
 
 
   return (
