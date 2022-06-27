@@ -8,7 +8,7 @@ Smart contracts are deployed on [Rinkeby Testnet](https://rinkeby.etherscan.io)
 - Governer Token : [0x30638A4984660b7D5307Ea1Bf8E8C18587588cF9](https://rinkeby.etherscan.io/address/0x30638A4984660b7D5307Ea1Bf8E8C18587588cF9#code)
 - Governer : [0x255fF237a4a09D003c045183C8d6c96c50cECc5b](https://rinkeby.etherscan.io/address/0x255fF237a4a09D003c045183C8d6c96c50cECc5b#code)
 - Timelock : [0x5467779f7fC9b4268D549AA30077a7baDb1F122e](https://rinkeby.etherscan.io/address/0x5467779f7fC9b4268D549AA30077a7baDb1F122e#code)
-- Box : [0xAA6AeD23a977AB067804d972edA2e4fFe9c5A443](https://rinkeby.etherscan.io/address/0xAA6AeD23a977AB067804d972edA2e4fFe9c5A443#code)
+- Treasury : [0x2efD68Fa8eFdC47B596D4F855b9d9c4895823Db5](https://rinkeby.etherscan.io/address/0x2efD68Fa8eFdC47B596D4F855b9d9c4895823Db5#code)
 
 # Note
 Set wallet and rpc url in config file before running the project.
