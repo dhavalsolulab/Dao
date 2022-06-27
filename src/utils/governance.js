@@ -16,8 +16,8 @@ export const castVote = async (proposalId, support, signer) => {
     return tx;
 }
 
-export const balanceOf = async (proposalId, signer) => {
+export const getPro = async (proposalId, signer) => {
     let contractSigner = contract.connect(signer);
     let proposalStatus = await contractSigner.proposalStatus(proposalId);
-    return bal;
+    return proposalStatus;
 }

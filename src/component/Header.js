@@ -3,7 +3,7 @@ import moralisLogo from "../images/Moralis.png";
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { contract, balanceOf } from "../utils/token";
-import { setAccount } from "../redux/actions/user.action";
+import { setAccount, setProvider } from "../redux/actions/user.action";
 import { useDispatch } from "react-redux/es/exports";
 const Header = () => {
   const [add, setAdd] = useState(0);
@@ -33,6 +33,7 @@ const Header = () => {
       network.chainId
     );
     if (network.chainId == 4) {
+      dispatch(setProvider(network.chainId));
       toast.success("Connected Succefully");
     } else {
       toast.error("Please switch to Rinkeby Testnet");
